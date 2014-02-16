@@ -11,10 +11,11 @@ Vagrant.configure("2") do |config|
 	config.vm.define :mongodb do |mongodb|
     		mongodb.vm.box = "ubuntu_precise64"
 		mongodb.vm.box_url = "http://files.vagrantup.com/precise64.box"
-        mongodb.vm.network "private_network", ip: "192.168.50.4"
+        mongodb.vm.network "private_network", ip: "192.168.50.5"
         mongodb.vm.synced_folder ".", "/vagrant"#, type: "nfs"
         mongodb.vm.network "forwarded_port", guest: 80, host: 8088
-        mongodb.vm.network "forwarded_port", guest: 1337, host: 1338
+        mongodb.vm.network "forwarded_port", guest: 27017, host: 27017
+        mongodb.vm.network "forwarded_port", guest: 28017, host: 28017
 
 		# This allows symlinks to be created within the /vagrant root directory, 
   		# which is something librarian-puppet needs to be able to do. This might
